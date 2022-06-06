@@ -2,7 +2,7 @@
 
 task 'assets:precompile:before' do
 
-  require 'uglifier'
+  require 'terser'
   require 'open3'
 
   unless %w{profile production}.include? Rails.env
@@ -117,14 +117,13 @@ end
 def compress_ruby(from, to)
   data = File.read("#{assets_path}/#{from}")
 
-  uglified, map = Uglifier.new(comments: :none,
-                              harmony: true,
+  uglified, map = Terser.new(comments: :none,
                                source_map: {
                                  filename: File.basename(from),
                                  output_filename: File.basename(to)
                                }
                               )
-    .compile_with_map(data, harmony: true)
+    .compile_with_map(data)
   dest = "#{assets_path}/#{to}"
 
   File.write(dest, uglified << "\n//# sourceMappingURL=#{cdn_path "/assets/#{to}.map"}")

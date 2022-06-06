@@ -448,7 +448,7 @@ GEM
     tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
+    terser (1.1.9)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
@@ -597,7 +597,7 @@ DEPENDENCIES
   stackprof
   test-prof
   thor
-  uglifier
+  terser
   unf
   unicorn
   webmock

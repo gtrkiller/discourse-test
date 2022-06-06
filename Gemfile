@@ -138,7 +138,7 @@ gem 'json_schemer'
 # Gems used only for assets and not required in production environments by default.
 # Allow everywhere for now cause we are allowing asset debugging in production
 group :assets do
-  gem 'uglifier'
+  gem 'terser'
   gem 'rtlit', require: false # for css rtling
 end
 
