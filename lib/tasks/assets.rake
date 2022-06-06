@@ -98,7 +98,7 @@ def compress_node(from, to)
   base_source_map = assets_path + assets_additional_path
 
   # TODO: Remove uglifyjs when base image only includes terser
-  js_compressor = `which terser`.empty? ? 'uglifyjs' : 'terser'
+  js_compressor = 'terser'
 
   cmd = <<~EOS
     #{js_compressor} '#{assets_path}/#{from}' -m -c -o '#{to_path}' --source-map "base='#{base_source_map}',root='#{source_map_root}',url='#{source_map_url}'"
