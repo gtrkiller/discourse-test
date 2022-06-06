@@ -324,7 +324,7 @@ task 'javascript:update' => 'clean_up' do
     end
 
     if f[:uglify]
-      File.write(dest, Terser.new.compile(File.read(src), harmony: true))
+      File.write(dest, Terser.new.compile(File.read(src)))
     else
       FileUtils.cp_r(src, dest)
     end
