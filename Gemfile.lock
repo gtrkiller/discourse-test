@@ -443,13 +443,13 @@ GEM
       sprockets (>= 3.0.0)
     sshkey (2.0.0)
     stackprof (0.2.17)
+    terser (1.1.9)
+      execjs (>= 0.3.0, < 3)
     test-prof (1.0.5)
     thor (1.1.0)
     tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
@@ -595,9 +595,9 @@ DEPENDENCIES
   sprockets-rails
   sshkey
   stackprof
+  terser
   test-prof
   thor
-  uglifier
   unf
   unicorn
   webmock

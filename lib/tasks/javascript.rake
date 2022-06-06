@@ -257,7 +257,7 @@ task 'javascript:update_constants' => :environment do
 end
 
 task 'javascript:update' => 'clean_up' do
-  require 'uglifier'
+  require 'terser'
 
   yarn = system("yarn install")
   abort('Unable to run "yarn install"') unless yarn
@@ -324,7 +324,7 @@ task 'javascript:update' => 'clean_up' do
     end
 
     if f[:uglify]
-      File.write(dest, Uglifier.new.compile(File.read(src), harmony: true))
+      File.write(dest, Terser.new.compile(File.read(src), harmony: true))
     else
       FileUtils.cp_r(src, dest)
     end
