@@ -24,7 +24,7 @@ task 'assets:precompile:before' do
 
   unless ENV['USE_SPROCKETS_UGLIFY']
     $bypass_sprockets_uglify = true
-    Rails.configuration.assets.js_compressor = nil
+    #Rails.configuration.assets.js_compressor = nil
     Rails.configuration.assets.gzip = false
   end
 
@@ -94,15 +94,12 @@ def compress_node(from, to)
   assets = cdn_relative_path("/assets")
   assets_additional_path = (d = File.dirname(from)) == "." ? "" : "/#{d}"
   source_map_root = assets + assets_additional_path
-  source_map_url = cdn_path "/assets/#{to}.map"
+  source_map_url = "#{File.basename(to)}.map"
   base_source_map = assets_path + assets_additional_path
 
-  # TODO: Remove uglifyjs when base image only includes terser
-  js_compressor = 'terser'
-
-  cmd = <<~EOS
-    #{js_compressor} '#{assets_path}/#{from}' -m -c -o '#{to_path}' --source-map "base='#{base_source_map}',root='#{source_map_root}',url='#{source_map_url}'"
-  EOS
+  cmd = <<~SH
+    terser '#{assets_path}/#{from}' -m -c -o '#{to_path}' --source-map "base='#{base_source_map}',root='#{source_map_root}',url='#{source_map_url}',includeSources=true"
+  SH
 
   STDERR.puts cmd
   result = `#{cmd} 2>&1`
